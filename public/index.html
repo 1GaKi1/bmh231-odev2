@@ -1,1 +1,60 @@
-<h1>Merhaba</h1>
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etkinlik Panosu</title>   
+    <link rel="stylesheet" href="stil.css">
+</head>
+<body>
+
+    <header class="ust-bant">
+        <a href="/" class="logo">Bozok Etkinlik</a>
+        <nav>
+            <a href="#liste">Etkinlikler</a>
+            <a href="#oneri">Etkinlik Öner</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="liste">
+            <h1>Listeler</h1>
+
+            <div class="araclar">
+                <div class="filtreler">
+                    <button class="filtre secilmistir" data-tur="hepsi">Tümü</button>
+                    <button class="filtre" data-tur="atolye">Atölye</button>
+                    <button class="filtre" data-tur="soylesi">Soyleşi</button>
+                    <button class="filtre" data-tur="topluluk">Topluluk</button>
+                </div>
+                <label for="arama">Ara</label>
+                <input type="search" id="arama" placeholder="Etkinlik adı...">
+            </div>
+
+            <p id="durum"></p>
+            <div id="kartlar" class="kartlar"></div>
+        </section>
+        <section id="oneri">
+            <h2>Etkinlik Önerme Formu</h2>
+            <form id="oneri-formu" novalidate>
+                <label for="ad">Etkinlik Adı</label>
+                <input type="text" id="ad" name="ad">
+                <label for="tarih">Etkinlik Tarihi</label>
+                <input type="date" id="tarih" name="tarih">
+                <label for="eposta">E-posta</label>
+                <input type="email" id="eposta" name="eposta">
+
+                <button type="submit">Gonder</button>
+                <p id="form-mesaj"></p>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 Bozok Etkinlik</p>
+    </footer>
+
+    <script src="betik.js"></script>
+
+</body>
+</html>
