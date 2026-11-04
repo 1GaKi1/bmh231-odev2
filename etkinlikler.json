@@ -1,0 +1,8 @@
+[
+  { "id": 1, "baslik": "Oyun Geliştirme", "tur": "atolye", "tarih": "2026-11-14", "yer": "Oyun Geliştirme Kulübü Odası", "kontenjan": 40 },
+  { "id": 2, "baslik": "C++ Giriş", "tur": "atolye", "tarih": "2026-11-04", "yer": "Ez 001", "kontenjan": 100 },
+  { "id": 3, "baslik": "Bilgisayar Mühendisliği ve Gelecekteki Rolü", "tur": "soylesi", "tarih": "2026-11-16", "yer": "Erdoğan Akdağ Kongre Merkezi", "kontenjan": 300 },
+  { "id": 4, "baslik": "Bilgisayar Mühendisliği ve Dal Seçimi", "tur": "soylesi", "tarih": "2026-12-17", "yer": "Erdoğan Akdağ Kongre Merkezi", "kontenjan": 300 },
+  { "id": 5, "baslik": "Ay Sonu Değerlendirme Toplantısı", "tur": "topluluk", "tarih": "2026-12-29", "yer": "Oyun Geliştirme Kulübü Odası", "kontenjan": 50 },
+  { "id": 6, "baslik": "Fikir Alışverişi Toplantısı", "tur": "topluluk", "tarih": "2026-12-21", "yer": "Oyun Geliştirme Kulübü Odası", "kontenjan": 30 }
+]
