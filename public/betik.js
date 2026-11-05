@@ -17,7 +17,7 @@ function kartOluştur(e){
     etiket.textContent = TUR_ADLARI[e.tur];
 
     const baslik = document.createElement("h3");
-    baslik.textName = e.baslik;
+    baslik.textContent = e.baslik;
 
     const tarih = document.createElement("p");
     tarih.textContent = "📅 " + new Date(e.tarih).toLocaleDateString("tr-TR");
@@ -36,7 +36,7 @@ function olustur(liste){
     kartlarKutusu.innerHTML = ""
 
     if(liste.length === 0){
-        durum.textContent("Etkinlik bulunamadı.");
+        durum.textContent = ("Etkinlik bulunamadı.");
         return;
     }
     durum.textContent= "";
@@ -45,3 +45,36 @@ function olustur(liste){
     }
 }
 olustur(etkinlikler);
+
+let secilenTur ="hepsi"
+let aramaMetni ="";
+
+const dugmeler= document.querySelectorAll(".filtre");
+const aramaKutusu = document.getElementById("arama");
+
+function filtreleOlustur(){
+    const sonuc = etkinlikler.filter(e => {
+        const turUygun = secilenTur ==="hepsi" || e.tur === secilenTur;
+        const aramaUygun = e.baslik.toLocaleLowerCase("tr-TR").includes(aramaMetni);
+            return turUygun && aramaUygun;
+        
+    }  );
+    olustur(sonuc);
+
+}
+
+for (const dugme of dugmeler){
+    dugme.addEventListener("click", () => {
+        for (const d of dugmeler) d.classList.remove("secilmistir");
+        dugme.classList.add("secilmistir");
+        secilenTur = dugme.dataset.tur;
+        filtreleOlustur();
+    });
+}
+aramaKutusu.addEventListener("input", () => {
+    aramaMetni = aramaKutusu.value.trim().toLocaleLowerCase("tr-TR");
+    filtreleOlustur();
+
+});
+
+filtreleOlustur();
