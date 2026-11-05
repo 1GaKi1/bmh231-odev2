@@ -1,7 +1,4 @@
-let etkinlikler = [
-  { id: 1, baslik: "Unity'e Giriş Dersi", tur: "atolye", tarih: "2026-11-20", yer: "Oyun Geliştirme Kulüp Odası", kontenjan: 40 },
-  { id: 2, baslik: "Bilgisayar Mühendisliğinin Gelecekteki Konumu", tur: "soylesi", tarih: "2026-12-01", yer: "Erdoğan Akdağ Kongre Merkezi", kontenjan: 300 },
-];
+let etkinlikler= [];
 
 const kartlarKutusu = document.getElementById("kartlar");
 const durum = document.getElementById("durum");
@@ -44,7 +41,6 @@ function olustur(liste){
         kartlarKutusu.append(kartOluştur(e));
     }
 }
-olustur(etkinlikler);
 
 let secilenTur ="hepsi"
 let aramaMetni ="";
@@ -54,13 +50,11 @@ const aramaKutusu = document.getElementById("arama");
 
 function filtreleOlustur(){
     const sonuc = etkinlikler.filter(e => {
-        const turUygun = secilenTur ==="hepsi" || e.tur === secilenTur;
+        const turUygun = secilenTur === "hepsi" || e.tur === secilenTur;
         const aramaUygun = e.baslik.toLocaleLowerCase("tr-TR").includes(aramaMetni);
-            return turUygun && aramaUygun;
-        
-    }  );
+        return turUygun && aramaUygun;
+    });
     olustur(sonuc);
-
 }
 
 for (const dugme of dugmeler){
@@ -77,4 +71,19 @@ aramaKutusu.addEventListener("input", () => {
 
 });
 
-filtreleOlustur();
+async function etkinlikleriGetir() {
+    durum.textContent = "Yükleniyor...";
+    try {
+        const yanit =await fetch("/api/etkinlikler");
+        if (!yanit.ok) {
+            throw new Error("Sunucu hatası: " + yanit.status);
+        }
+        etkinlikler = await yanit.json();
+        filtreleOlustur();
+    } catch(hata) {
+        console.error(hata);
+        durum.textContent = "Etkinlikler yüklenemedi. Lütfen daha sonra tekrar deneyin.";
+    }
+}
+
+etkinlikleriGetir();
