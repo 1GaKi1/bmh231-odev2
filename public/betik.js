@@ -13,7 +13,7 @@ function kartOluştur(e){
     etiket.className = "etiket";
     etiket.textContent = TUR_ADLARI[e.tur];
 
-    const baslik = document.createElement("h3");
+    const baslik = document.createElement("h2");
     baslik.textContent = e.baslik;
 
     const tarih = document.createElement("p");
