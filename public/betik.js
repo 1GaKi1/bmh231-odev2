@@ -87,3 +87,41 @@ async function etkinlikleriGetir() {
 }
 
 etkinlikleriGetir();
+
+const form = document.getElementById("oneri-formu");
+const formMesaj = document.getElementById("form-mesaj");
+
+form.addEventListener("submit", (olay) => {
+    olay.preventDefault(); 
+
+    const ad = document.getElementById("ad").value.trim();
+    const tarih = document.getElementById("tarih").value;
+    const eposta = document.getElementById("eposta").value.trim();
+
+    const hatalar = [];
+
+    if (ad.length < 5) {
+        hatalar.push("Etkinlik adı en az 5 karakter olmalı.");
+    }
+
+    const bugun = new Date().toISOString().slice(0, 10); 
+    if (tarih === "") {
+        hatalar.push("Tarih boş bırakılamaz.");
+    } else if (tarih < bugun) {
+        hatalar.push("Tarih geçmiş bir gün olamaz.");
+    }
+
+    const epostaKalibi = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!epostaKalibi.test(eposta)) {
+        hatalar.push("Geçerli bir e-posta adresi girin.");
+    }
+
+    if (hatalar.length > 0) {
+        formMesaj.className = "hata";
+        formMesaj.textContent = hatalar.join(" ");
+    } else {
+        formMesaj.className = "basari";
+        formMesaj.textContent = "Öneriniz gönderilmiştir.";
+        form.reset();
+    }
+});
